@@ -1,0 +1,76 @@
+# === PYTHON ===
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+pip-wheel-metadata/
+*.log
+
+# virtual environment
+venv/
+env/
+.venv/
+
+# pytest
+.cache/
+.pytest_cache/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+
+# coverage reports
+htmlcov/
+.coverage*
+.cache/
+.tox/
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+
+# === FASTAPI / Uvicorn logs ===
+*.db
+*.sqlite3
+instance/
+*.pid
+
+# === VUE ===
+node_modules/
+dist/
+*.log
+*.local
+.env.*
+!.env.example
+
+# === VSCode ===
+.vscode/
+.history/
+
+# === PyCharm ===
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# === OS Files ===
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Icon?
+Desktop.ini
+
+# === Docker ===
+*.tar
+*.lock
+docker-compose.override.yml
+
+# === Other ===
+.env
+.env.local
+.env.*.local
