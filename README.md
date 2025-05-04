@@ -1,11 +1,13 @@
-# Preview the app
+# Ver la app
 
-You can access the app at the following links:
+Puedes acceder en los sigfuientes link
 
 -   **Backend**: [https://lyrical-oath-458519-k1.oa.r.appspot.com/](https://lyrical-oath-458519-k1.oa.r.appspot.com/)
 -   **Frontend**: [https://frontend-dot-lyrical-oath-458519-k1.oa.r.appspot.com/](https://frontend-dot-lyrical-oath-458519-k1.oa.r.appspot.com/)
 
 # API Endpoints
+
+-   **Endpoints**: [https://lyrical-oath-458519-k1.oa.r.appspot.com/docs](https://lyrical-oath-458519-k1.oa.r.appspot.com/docs)
 
 # Instalación
 
@@ -17,6 +19,7 @@ cd reserweb
 ```
 
 Dentro de la carpeta de proyecto hay dos carpetas:
+
 1. **backend**: con el código de Python 3 usando FastAPI
 2. **frontend**: con el código de Vue 3.
 
@@ -65,9 +68,8 @@ In your project root, create a .env file with the following content:
 
     APP_TITLE="RESERWEB"
     ENVIRONMENT="DEV"
-    DEBUG="true" 
+    DEBUG="true"
 
 # Database settings (for development)
 
     DATABASE_URL="sqlite:///./test.db"  cadena der conexión a MySQL
-
