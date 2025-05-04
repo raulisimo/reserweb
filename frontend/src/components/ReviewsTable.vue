@@ -68,8 +68,8 @@
       <tbody>
         <tr v-for="r in reviews" :key="r.id">
           <td>{{ r.id }}</td>
-          <td>{{ r.user_id }}</td>
-          <td>{{ r.restaurant_id }}</td>
+          <td>{{ r.user_name }}</td>
+          <td>{{ r.restaurant_name }}</td>
           <td>{{ r.rating }}</td>
           <td>{{ r.comment }}</td>
           <td>{{ formatDate(r.created_at) }}</td>
