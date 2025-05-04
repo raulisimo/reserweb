@@ -54,21 +54,17 @@ const error = ref(null)
 const router = useRouter()
 const authStore = useAuthStore()
 
-// Handle the login process
 const handleLogin = async () => {
   loading.value = true
   error.value = null
 
   try {
-    // Use the auth store to perform login
     await authStore.login({ email: email.value, password: password.value })
 
-    // Redirect to home after successful login
     router.push('/')
   } catch (err) {
     console.error('Login failed:', err)
 
-    // Handle error, show appropriate message
     error.value = err?.response?.data?.message || 'Login failed. Please try again.'
   } finally {
     loading.value = false

@@ -12,7 +12,6 @@ SECRET_KEY = "your_super_secret_key"
 ALGORITHM = "HS256"
 
 
-# Dependency to get the current user from JWT token
 def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)):
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
@@ -21,7 +20,6 @@ def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(
     )
 
     try:
-        # Decode the token
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         user_id: str = payload.get("user_id")
         if user_id is None:
@@ -34,7 +32,6 @@ def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(
         raise credentials_exception
 
 
-# Dependency to check if the user is an admin
 def get_admin_user(current_user: User = Depends(get_current_user)):
     if current_user.role.name != RoleEnum.ADMIN:
         raise HTTPException(

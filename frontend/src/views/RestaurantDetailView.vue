@@ -63,7 +63,7 @@
                       <div class="d-flex justify-content-between align-items-start mb-2">
                         <h4 class="dish-name h6 mb-0 me-2">{{ item.name }}</h4>
                         <span class="dish-price badge bg-light text-dark"
-                          >${{ item.price.toFixed(2) }}</span
+                          >€{{ item.price.toFixed(2) }}</span
                         >
                       </div>
                       <p class="dish-description mb-2">{{ item.description }}</p>
@@ -147,6 +147,7 @@
                     </div>
                     <div>
                       <h6 class="mb-0">{{ review.user_name }}</h6>
+                      <h6 class="mb-0">Puntuación: {{ review.rating }}</h6>
                       <div class="ratings-stars small">
                         <i
                           v-for="n in 5"

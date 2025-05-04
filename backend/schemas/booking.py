@@ -1,12 +1,15 @@
-from pydantic import BaseModel
 from datetime import datetime
 from typing import Optional
+
+from pydantic import BaseModel
+
 
 class BookingCreate(BaseModel):
     restaurant_id: int
     booking_time: datetime
     number_of_people: int
-    special_request: Optional[str] = None  # Comments for allergies, etc.
+    special_request: Optional[str] = None
+
 
 class BookingOut(BaseModel):
     id: int

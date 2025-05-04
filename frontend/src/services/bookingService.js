@@ -4,7 +4,7 @@ export const createBooking = async (bookingData) => {
   // eslint-disable-next-line no-undef
   const token = localStorage.getItem('access_token')
 
-  const response = await fetch(`${apiUrl}/bookings`, {
+  const response = await fetch(`${apiUrl}/bookings/create`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

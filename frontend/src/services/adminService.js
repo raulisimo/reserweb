@@ -2,7 +2,7 @@ import { apiUrl } from '@/config'
 import { getAuthHeaders } from '@/services/utils'
 
 export const getUsers = async () => {
-  const response = await fetch(`${apiUrl}/users`, {
+  const response = await fetch(`${apiUrl}/users/all`, {
     headers: getAuthHeaders(),
   })
 
@@ -14,7 +14,7 @@ export const getUsers = async () => {
 }
 
 export const createUser = async (userData) => {
-  const response = await fetch(`${apiUrl}/users`, {
+  const response = await fetch(`${apiUrl}/users/create`, {
     method: 'POST',
     headers: getAuthHeaders(),
     body: JSON.stringify(userData),

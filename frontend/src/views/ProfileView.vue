@@ -18,10 +18,8 @@ import BaseLayout from '@/views/layouts/BaseLayout.vue'
 import ProfileClient from '@/components/ProfileClient.vue'
 import ProfileRestaurant from '@/components/ProfileRestaurant.vue'
 
-// Get auth state from Pinia store
 const authStore = useAuthStore()
 
-// Determine which profile component to show based on the user's role
 const profileComponent = computed(() => {
   if (!authStore.user) return null
   return authStore.user.role === 'restaurant' ? ProfileRestaurant : ProfileClient

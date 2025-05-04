@@ -13,7 +13,7 @@ router = APIRouter()
 user_repo = UserRepository()
 
 
-@router.post("/", response_model=UserRead, status_code=status.HTTP_201_CREATED)
+@router.post("/create", response_model=UserRead, status_code=status.HTTP_201_CREATED)
 def create_user(user: UserCreate, db: Session = Depends(get_db), current_user: User = Depends(get_admin_user)):
     if user_repo.get_by_email(db, user.email):
         raise HTTPException(
@@ -36,7 +36,7 @@ def create_user(user: UserCreate, db: Session = Depends(get_db), current_user: U
     )
 
 
-@router.get("/", response_model=list[UserRead])
+@router.get("/all", response_model=list[UserRead])
 def list_users(db: Session = Depends(get_db), current_user: User = Depends(get_admin_user)):
     return user_repo.get_all_users(db)
 

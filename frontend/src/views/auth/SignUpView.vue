@@ -30,7 +30,7 @@
         <div class="mb-3">
           <label class="form-label">Role</label>
           <select v-model="role" class="form-control" required>
-            <option value="" disabled selected>Select your role</option>
+            <option value="" disabled selected>Selecciona tu rol</option>
             <!-- Loop through roles and create an option for each -->
             <option v-for="role in roles" :key="role" :value="role">
               {{ role.name }}
@@ -68,19 +68,18 @@ import BaseLayout from '@/views/layouts/BaseLayout.vue'
 const name = ref('')
 const email = ref('')
 const password = ref('')
-const role = ref('') // Role selector state
+const role = ref('')
 const loading = ref(false)
 const error = ref(null)
-const roles = ref([]) // To store the available roles fetched from the backend
+const roles = ref([]) //
 
 const router = useRouter()
 
-// Fetch roles from the backend when the component is mounted
 const fetchRoles = async () => {
   loading.value = true
   try {
-    const data = await fetchStandardRoles() // Using the service to fetch roles
-    roles.value = data // Set the roles data to the roles variable
+    const data = await fetchStandardRoles()
+    roles.value = data
   } catch (err) {
     console.error('Error fetching roles:', err)
     error.value = 'Failed to load available roles'
@@ -93,12 +92,10 @@ onMounted(() => {
   fetchRoles()
 })
 
-// Handle Signup
 const handleSignup = async () => {
   loading.value = true
   error.value = null
   try {
-    // Include role in the signup request
     await signup({
       name: name.value,
       email: email.value,

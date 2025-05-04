@@ -11,12 +11,12 @@ router = APIRouter()
 review_repo = ReviewRepository()
 
 
-@router.get("/", response_model=list[ReviewRead])
+@router.get("/all", response_model=list[ReviewRead])
 def get_reviews(db: Session = Depends(get_db)):
     return review_repo.get_all_reviews(db)
 
 
-@router.post("/", status_code=status.HTTP_201_CREATED)
+@router.post("/create", status_code=status.HTTP_201_CREATED)
 def create_review(review_create: ReviewCreate, db: Session = Depends(get_db)):
     new_review = review_repo.create_review(db, review_create)
     return new_review
@@ -36,7 +36,7 @@ def get_reviews_by_user(
 ):
     reviews = review_repo.get_reviews_by_user(db, user.id)
     if not reviews:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="No reviews found for this user.")
+        return []
     return reviews
 
 
@@ -46,7 +46,7 @@ def get_reviews_by_user(user_id: int,
                         ):
     reviews = review_repo.get_reviews_by_user(db, user_id)
     if not reviews:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="No reviews found for this user.")
+        return []
     return reviews
 
 

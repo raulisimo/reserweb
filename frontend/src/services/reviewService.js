@@ -3,7 +3,7 @@ import { getAuthHeaders } from '@/services/utils'
 
 export async function fetchReviews() {
   try {
-    const response = await fetch(`${apiUrl}/reviews`)
+    const response = await fetch(`${apiUrl}/reviews/all`)
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`)
     }
@@ -30,7 +30,7 @@ export const fetchResturantReviews = async (id) => {
 }
 
 export const createReview = async (data) => {
-  const res = await fetch(`${apiUrl}/reviews`, {
+  const res = await fetch(`${apiUrl}/reviews/create`, {
     method: 'POST',
     headers: getAuthHeaders(),
     body: JSON.stringify(data),

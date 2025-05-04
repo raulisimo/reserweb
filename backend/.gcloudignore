@@ -1,0 +1,55 @@
+# .gcloudignore file for Google Cloud deployment
+
+# Ignore the .git directory and related git files
+.git
+.gitignore
+
+# Ignore the Python pycache
+__pycache__/
+
+# Ignore virtual environment directories
+venv/
+env/
+.venv/
+
+# Ignored by the build system
+/setup.cfg
+
+# Ignore FastAPI related logs, database, and cache files
+*.db
+*.sqlite3
+instance/
+*.pid
+
+# Ignore node_modules (for Vue frontend)
+node_modules/
+
+# Ignore local development environment files
+.env
+.env.local
+.env.*.local
+
+# Ignore coverage and test files
+.coverage
+.coverage.*
+.cache/
+nosetests.xml
+coverage.xml
+*.cover
+venv/
+__pycache__/
+*.pyc
+# Ignore IDE configurations for both VSCode and PyCharm
+.vscode/
+.idea/
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Icon?
+Desktop.ini
+
+# Ignore Docker files
+*.tar
+docker-compose.override.yml

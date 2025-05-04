@@ -94,9 +94,7 @@ const sortedRestaurants = computed(() => {
   return sorted
 })
 
-function sortRestaurants() {
-  // Trigger re-computation (already reactive)
-}
+function sortRestaurants() {}
 </script>
 
 <style scoped>
@@ -122,7 +120,6 @@ function sortRestaurants() {
   height: 100%;
 }
 
-/* Score badge */
 .score-badge {
   position: absolute;
   top: 12px;

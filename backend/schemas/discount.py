@@ -1,6 +1,8 @@
-from pydantic import BaseModel
-from typing import Optional
 from datetime import date
+from typing import Optional
+
+from pydantic import BaseModel
+
 
 class DiscountOut(BaseModel):
     id: int
@@ -14,6 +16,7 @@ class DiscountOut(BaseModel):
     class Config:
         from_attributes = True
 
+
 class DiscountUpdate(BaseModel):
     title: Optional[str]
     description: Optional[str]
@@ -21,6 +24,7 @@ class DiscountUpdate(BaseModel):
     valid_from: Optional[date]
     valid_until: Optional[date]
     restaurant_id: Optional[int]
+
 
 class DiscountCreate(BaseModel):
     title: str

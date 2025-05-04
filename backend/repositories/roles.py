@@ -10,4 +10,4 @@ class RolesRepository(BaseRepository[Role]):
 
     def fetch_standard_roles(self, db: Session):
         return db.query(Role).filter(~Role.name.ilike(f"%admin%")
-        ).all()
+                                     ).all()

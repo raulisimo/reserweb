@@ -12,17 +12,15 @@ class ReviewRepository(BaseRepository[Review]):
         super().__init__(Review)
 
     def get_all_reviews(self, db: Session):
-        # Join the reviews with users and restaurants based on user_id and restaurant_id
         reviews_query = db.query(
             Review.id,
             Review.comment,
             Review.created_at,
             Review.rating,
-            User.name.label('user_name'),  # Get the user name from the User table
-            Restaurant.name.label('restaurant_name'),  # Get the restaurant name from the Restaurant table
+            User.name.label('user_name'),
+            Restaurant.name.label('restaurant_name'),
         ).join(User, User.id == Review.user_id).join(Restaurant, Restaurant.id == Review.restaurant_id)
 
-        # Fetch the data
         reviews = reviews_query.all()
 
         return reviews

@@ -4,14 +4,14 @@
       <div class="container py-5">
         <h2 class="mb-4 text-center">Reserva en tu restaurante favorito</h2>
 
-        <!-- ✅ Success message -->
+        <!-- Success message -->
         <div v-if="successMessage" class="alert alert-success text-center">
           {{ successMessage }}
         </div>
 
-        <!-- 📋 Booking Form -->
+        <!-- Booking Form -->
         <form @submit.prevent="submitBooking" class="card p-4 shadow-sm">
-          <!-- 🔍 Searchable Restaurant Input -->
+          <!-- Searchable Restaurant Input -->
           <div class="mb-3 position-relative">
             <label class="form-label">Restaurante</label>
             <input
@@ -48,19 +48,19 @@
             </div>
           </div>
 
-          <!-- 📅 Date Picker -->
+          <!-- Date Picker -->
           <div class="mb-3">
             <label class="form-label">Fecha</label>
             <input type="date" class="form-control" v-model="bookingDate" :min="today" required />
           </div>
 
-          <!-- ⏰ Time Picker -->
+          <!-- Time Picker -->
           <div class="mb-3">
             <label class="form-label">Hora</label>
             <input type="time" class="form-control" v-model="bookingTime" :min="minTime" required />
           </div>
 
-          <!-- 👥 Number of People -->
+          <!-- Number of People -->
           <div class="mb-3">
             <label class="form-label">Número de personas</label>
             <input
@@ -72,7 +72,7 @@
             />
           </div>
 
-          <!-- 📝 Special Requests -->
+          <!-- Special Requests -->
           <div class="mb-3">
             <label class="form-label">Comentarios (alergias, etc.)</label>
             <textarea
@@ -83,7 +83,7 @@
             ></textarea>
           </div>
 
-          <!-- ✅ Submit -->
+          <!-- Submit -->
           <div>
             <button type="submit" class="btn btn-primary w-100">Reservar</button>
           </div>

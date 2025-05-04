@@ -77,14 +77,13 @@
 import { ref, onMounted, computed } from 'vue'
 import BaseLayout from '@/views/layouts/BaseLayout.vue'
 import { useAuthStore } from '@/stores/auth'
-import { getAuthHeaders } from '@/services/utils'
 import {
   fetchUserReviews,
   createReview,
   updateReview,
   deleteReview,
 } from '@/services/reviewService'
-import { apiUrl } from '@/config'
+import { fetchRestaurants } from '@/services/restaurantService'
 
 // State
 const authStore = useAuthStore()
@@ -95,17 +94,14 @@ const restaurants = ref([])
 const form = ref({ restaurant_id: '', rating: '', comment: '' })
 const editingReview = ref(null)
 
-const fetchRestaurants = async () => {
-  const res = await fetch(`${apiUrl}/restaurants`, {
-    headers: getAuthHeaders(),
-  })
-  restaurants.value = await res.json()
+const getRestaurants = async () => {
+  restaurants.value = await fetchRestaurants()
 }
 
 const loadData = async () => {
   if (!user.value) return
   reviews.value = await fetchUserReviews(user.value.id)
-  await fetchRestaurants()
+  await getRestaurants()
 }
 
 onMounted(loadData)

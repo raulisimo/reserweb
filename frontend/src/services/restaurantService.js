@@ -3,7 +3,7 @@ import { getAuthHeaders } from '@/services/utils'
 
 export async function fetchRestaurants() {
   try {
-    const response = await fetch(`${apiUrl}/restaurants`)
+    const response = await fetch(`${apiUrl}/restaurants/all`)
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`)
     }
@@ -65,7 +65,7 @@ export async function getRestaurantByUserId(userId) {
 }
 
 export const createRestaurant = async (data) => {
-  const res = await fetch(`${apiUrl}/restaurants`, {
+  const res = await fetch(`${apiUrl}/restaurants/create`, {
     method: 'POST',
     headers: getAuthHeaders(),
     body: JSON.stringify(data),

@@ -28,7 +28,7 @@ class BookingRepository(BaseRepository[Booking]):
             booking_time=booking_time,
             number_of_people=number_of_people,
             special_request=special_request,
-            user_id=user_id  # Assuming you're storing the user_id of the person booking
+            user_id=user_id
         )
         db.add(booking)
         db.commit()
@@ -36,7 +36,6 @@ class BookingRepository(BaseRepository[Booking]):
         return booking
 
     def get_bookings_by_user(self, db: Session, user_id: int):
-        # Join Booking with Restaurant to get the restaurant name
         bookings_query = db.query(
             Booking.id,
             Booking.created_at,
@@ -46,7 +45,7 @@ class BookingRepository(BaseRepository[Booking]):
             Restaurant.name.label('restaurant_name'),
             Restaurant.id.label('restaurant_id')
         ).join(Restaurant, Restaurant.id == Booking.restaurant_id).filter(Booking.user_id == user_id)
-        bookings = bookings_query.all()  # Get all matching bookings
+        bookings = bookings_query.all()
 
         return bookings
 

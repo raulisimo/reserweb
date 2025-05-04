@@ -23,7 +23,7 @@ import BaseLayout from './layouts/BaseLayout.vue'
 <style scoped>
 .admin-panel {
   display: flex;
-  min-height: 100vh; /* Full height */
+  min-height: 100vh;
 }
 
 .admin-nav {

@@ -200,12 +200,18 @@
                 <p><strong>Email:</strong> {{ restaurant.email }}</p>
                 <p><strong>Descripción:</strong> {{ restaurant.description }}</p>
               </div>
-              <div class="col-md-6" v-if="restaurant.embedded_map">
+              <div class="col-md-6">
                 <h5>Ubicación</h5>
-                <div class="embedded-map-container" v-html="sanitizedMapHtml"></div>
-              </div>
-              <div v-else class="col-md-6">
-                <p class="text-muted">Mapa no proporcionado.</p>
+                <iframe
+                  v-if="restaurant.embedded_map"
+                  :src="restaurant.embedded_map"
+                  height="450"
+                  style="border: 0"
+                  allowfullscreen
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                ></iframe>
+                <p v-else class="text-muted">Mapa no proporcionado.</p>
               </div>
             </div>
           </div>
@@ -874,24 +880,6 @@ watch(
 </script>
 
 <style scoped>
-.embedded-map-container {
-  position: relative;
-  overflow: hidden;
-  padding-top: 56.25%;
-  height: 0;
-  border: 1px solid #dee2e6;
-  border-radius: 0.25rem;
-}
-
-.embedded-map-container :deep(iframe) {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
-
 .card-header {
   font-weight: 500;
 }

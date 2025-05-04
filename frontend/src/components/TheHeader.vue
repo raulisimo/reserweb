@@ -71,22 +71,18 @@ import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import { useAuthStore } from '@/stores/auth'
 import { useRouter } from 'vue-router'
 
-// Store and router
 const authStore = useAuthStore()
 const router = useRouter()
 
-// State
 const showDropdown = ref(false)
 const dropdownRef = ref(null)
 
-// Auth status
 const isAuthenticated = computed(() => authStore.isAuthenticated)
 const user = computed(() => authStore.user)
 const isAdmin = computed(() => authStore.isAdmin)
 const isClient = computed(() => authStore.isClient)
 const isRestaurant = computed(() => authStore.isRestaurant)
 
-// Methods
 const toggleDropdown = () => {
   showDropdown.value = !showDropdown.value
 }
@@ -97,7 +93,6 @@ const handleClickOutside = (event) => {
   }
 }
 
-// Mount event listener
 onMounted(() => {
   // eslint-disable-next-line no-undef
   document.addEventListener('click', handleClickOutside)

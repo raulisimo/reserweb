@@ -1,0 +1,20 @@
+service: default
+runtime: python311
+
+entrypoint: uvicorn main:app --host 0.0.0.0 --port 8080
+
+env_variables:
+  GCP_PROJECT_ID: "lyrical-oath-458519-k1"
+  CLOUD_SQL_CONNECTION_NAME: "lyrical-oath-458519-k1:us-central1:reserweb-mysql"
+  APP_TITLE: "reserweb"
+  DEBUG: "true"
+  ENVIRONMENT: "PRO"
+  DB_USER: "root"
+  DB_PASSWORD: "reserweb-mysql"
+  DB_HOST: "localhost"
+  DB_PORT: "3306"
+  DB_NAME: "reserweb"
+
+handlers:
+  - url: /.*
+    script: auto

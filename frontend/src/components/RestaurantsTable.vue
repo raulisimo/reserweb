@@ -157,7 +157,7 @@ import {
   createRestaurant,
   updateRestaurant,
   deleteRestaurant,
-} from '@/services/restaurantService' // you must implement these
+} from '@/services/restaurantService'
 
 const restaurants = ref([])
 const loading = ref(false)

@@ -10,7 +10,7 @@ export const fetchDiscountsByRestaurantId = async (restaurantId) => {
 }
 
 export const createDiscount = async (data) => {
-  const res = await fetch(`${apiUrl}/discounts`, {
+  const res = await fetch(`${apiUrl}/discounts/create`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),

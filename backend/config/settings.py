@@ -1,14 +1,12 @@
 import os
 
+import pymysql
 from dotenv import load_dotenv
+from google.cloud.sql.connector import Connector, IPTypes
 from sqlalchemy import create_engine, Engine
 
 
 class BaseSettings:
-    """
-    Base class for application settings
-    """
-
     APP_TITLE: str
     DEBUG: bool
 
@@ -54,14 +52,38 @@ class DevSettings(BaseSettings):
         return os.getenv("DEBUG", "false").lower() in ("true", "1", "yes")
 
     def get_db_connection(self) -> Engine:
-        """Create a connection to the MySQL database"""
-        db_user = self.get_config_value("DB_USER")
-        db_password = self.get_config_value("DB_PASSWORD")
-        db_host = self.get_config_value("DB_HOST")  # new
-        db_port = self.get_config_value("DB_PORT")  # new
-        db_name = self.get_config_value("DB_NAME")
 
-        DATABASE_URL = f"mysql+pymysql://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}"
+        environment = self.get_config_value("ENVIRONMENT")
+
+        if environment == "PRO":
+            connection_name = os.getenv("CLOUD_SQL_CONNECTION_NAME")
+            db_user = os.getenv("DB_USER", "root")
+            db_name = os.getenv("DB_NAME", "brite-movies")
+            db_password = self.get_config_value("DB_PASSWORD")
+
+            ip_type = IPTypes.PRIVATE if os.getenv("PRIVATE_IP", "").lower() in ("true", "1", "yes") else IPTypes.PUBLIC
+
+            connector = Connector(ip_type)
+
+            def getconn() -> pymysql.connections.Connection:
+                return connector.connect(
+                    connection_name,
+                    "pymysql",
+                    user=db_user,
+                    password=db_password,
+                    db=db_name,
+                )
+
+            return create_engine("mysql+pymysql://", creator=getconn)
+        else:
+            """Create a connection to the MySQL database"""
+            db_user = self.get_config_value("DB_USER")
+            db_password = self.get_config_value("DB_PASSWORD")
+            db_host = self.get_config_value("DB_HOST")
+            db_port = self.get_config_value("DB_PORT")
+            db_name = self.get_config_value("DB_NAME")
+
+            DATABASE_URL = f"mysql+pymysql://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}"
         return create_engine(DATABASE_URL, echo=self.DEBUG)
 
 

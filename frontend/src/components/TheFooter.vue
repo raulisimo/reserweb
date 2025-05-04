@@ -30,6 +30,6 @@ html {
 }
 
 footer {
-  margin-top: auto; /* Ensures the footer sticks to the bottom */
+  margin-top: auto;
 }
 </style>

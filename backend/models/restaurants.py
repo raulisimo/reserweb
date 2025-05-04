@@ -7,7 +7,6 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from models import ModelBase
 
 
-
 class Restaurant(ModelBase):
     __tablename__ = "restaurants"
 
@@ -28,5 +27,3 @@ class Restaurant(ModelBase):
     bookings: Mapped[list["Booking"]] = relationship("Booking", back_populates="restaurant")
     discounts: Mapped[list["Discount"]] = relationship("Discount", back_populates="restaurant")
     reviews: Mapped[list["Review"]] = relationship("Review", back_populates="restaurant")
-
-

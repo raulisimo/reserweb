@@ -25,6 +25,7 @@ class ReviewRead(BaseModel):
     class Config:
         from_attributes = True
 
+
 class ReviewUpdate(BaseModel):
     rating: Optional[int] = None
     comment: Optional[str] = None

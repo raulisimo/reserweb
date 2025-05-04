@@ -1,6 +1,6 @@
-from typing import List
+from typing import List, Optional
 
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
 from dependencies.database import get_db
@@ -20,21 +20,21 @@ def search_restaurants(query: str, db: Session = Depends(get_db)):
     return restaurant_repo.search_restaurants(db, query)
 
 
-@router.post("/", response_model=RestaurantOut)
+@router.post("/create", response_model=RestaurantOut)
 def create_restaurant(restaurant_in: RestaurantCreate, db: Session = Depends(get_db)):
     return restaurant_repo.create(db, restaurant_in.model_dump())
 
 
-@router.get("/", response_model=List[RestaurantOut])
+@router.get("/all", response_model=List[RestaurantOut])
 def list_restaurants(db: Session = Depends(get_db)):
     return restaurant_repo.get_all(db)
 
 
-@router.get("/user/{user_id}", response_model=RestaurantOut)
+@router.get("/user/{user_id}", response_model=Optional[RestaurantOut])
 def get_restaurant_by_user_id(user_id: int, db: Session = Depends(get_db)):
     restaurant = restaurant_repo.get_by_user_id(db, user_id)
     if not restaurant:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Restaurant not found")
+        return None
     return restaurant
 
 

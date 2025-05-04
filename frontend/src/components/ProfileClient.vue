@@ -94,8 +94,7 @@ onMounted(async () => {
 
 const deleteBooking = async (bookingId) => {
   try {
-    await deleteBookingByUser(bookingId) // Call the delete service
-    // Remove the deleted booking from the list
+    await deleteBookingByUser(bookingId)
     userBookings.value = userBookings.value.filter((booking) => booking.id !== bookingId)
     // eslint-disable-next-line no-undef
     alert('Reserva eliminada exitosamente')

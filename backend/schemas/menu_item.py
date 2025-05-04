@@ -20,6 +20,7 @@ class MenuItemUpdate(BaseModel):
     description: Optional[str]
     is_available: Optional[bool]
 
+
 class MenuItemOut(BaseModel):
     id: int
     name: str
@@ -38,4 +39,3 @@ class MenuItemCreate(BaseModel):
 
     class Config:
         from_attributes = True
-

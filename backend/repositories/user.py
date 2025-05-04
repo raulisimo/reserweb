@@ -1,11 +1,10 @@
-import bcrypt
+from typing import Optional
+
 from sqlalchemy.orm import Session
 
 from models.roles import Role
 from models.user import User
 from repositories.base import BaseRepository
-from typing import Optional
-
 from schemas.user import UserCreate
 from services.security import hash_password
 

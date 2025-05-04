@@ -19,12 +19,12 @@ class MenuRepository(BaseRepository[MenuItem]):
             description=menu_item.description,
             price=menu_item.price,
             is_available=menu_item.is_available,
-            restaurant_id=restaurant_id  # Associate with the restaurant
+            restaurant_id=restaurant_id
         )
 
         db.add(db_menu_item)
         db.commit()
-        db.refresh(db_menu_item)  # Get the object with the generated 'id'
+        db.refresh(db_menu_item)
         return db_menu_item
 
     def update_menu_item(self, db: Session, menu_item_id: int, data: MenuItemUpdate):

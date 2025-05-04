@@ -14,12 +14,10 @@ user_repo = UserRepository()
 
 @router.post("/signup")
 def signup(user_create: UserCreate, db: Session = Depends(get_db)):
-    # Check if user with email already exists
     existing_user = user_repo.get_by_email(db, email=user_create.email)
     if existing_user:
         raise HTTPException(status_code=400, detail="Email already registered.")
 
-    # Get role from DB
     role = db.query(Role).filter(Role.name == user_create.role.lower()).first()
     if not role:
         raise HTTPException(status_code=400, detail="Invalid role selected.")
