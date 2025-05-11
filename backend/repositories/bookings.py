@@ -5,7 +5,9 @@ from sqlalchemy.orm import Session
 
 from models.booking import Booking
 from models.restaurants import Restaurant
+from models.user import User
 from repositories.base import BaseRepository
+from repositories.restaurant import RestaurantRepository
 
 
 class BookingRepository(BaseRepository[Booking]):
@@ -50,4 +52,36 @@ class BookingRepository(BaseRepository[Booking]):
         return bookings
 
     def get_bookings_by_restaurant(self, db: Session, restaurant_id: int):
-        return db.query(Booking).filter(Booking.restaurant_id == restaurant_id).all()
+        restaurant = RestaurantRepository().get_by_user_id(db, restaurant_id)
+
+        bookings_query = db.query(
+            Booking.id,
+            Booking.created_at,
+            Booking.booking_time,
+            Booking.number_of_people,
+            Booking.special_request,
+            Booking.restaurant_id,
+            Restaurant.name.label('restaurant_name'),
+            Booking.user_id,
+            User.name.label('user_name'),
+            User.id.label('user_id')
+        ).join(User, User.id == Booking.user_id) \
+            .join(Restaurant, Restaurant.id == Booking.restaurant_id) \
+            .filter(Booking.restaurant_id == restaurant.id)
+
+        results = bookings_query.all()
+
+        return [
+            {
+                "id": r[0],
+                "created_at": r[1],
+                "booking_time": r[2],
+                "number_of_people": r[3],
+                "special_request": r[4],
+                "restaurant_id": r[5],
+                "restaurant_name": r[6],
+                "user_id": r[7],
+                "user_name": r[8],
+            }
+            for r in results
+        ]

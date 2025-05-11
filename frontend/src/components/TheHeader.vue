@@ -53,6 +53,7 @@
 
             <template v-if="isRestaurant">
               <li><a class="dropdown-item" href="/profile">Mi Perfil</a></li>
+              <li><a class="dropdown-item" href="/my-bookings">Mis Reservas</a></li>
               <li>
                 <a class="dropdown-item text-danger" href="#" @click.prevent="logout"
                   >Cerrar sesión</a

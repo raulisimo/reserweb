@@ -7,7 +7,7 @@ from dependencies.authentication import get_current_user
 from dependencies.database import get_db
 from models.user import User
 from repositories.bookings import BookingRepository
-from schemas.booking import BookingOut, BookingCreate
+from schemas.booking import BookingOut, BookingCreate, BookingWithUserOut
 
 router = APIRouter()
 
@@ -52,7 +52,7 @@ def get_bookings_by_user(db: Session = Depends(get_db), user: User = Depends(get
     return bookings
 
 
-@router.get("/restaurant", response_model=list[BookingOut])
+@router.get("/restaurant", response_model=list[BookingWithUserOut])
 def get_bookings_by_restaurant(db: Session = Depends(get_db), restaurant: User = Depends(get_current_user)):
     bookings = booking_repo.get_bookings_by_restaurant(db, restaurant_id=restaurant.id)
     if not bookings:

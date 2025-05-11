@@ -5,6 +5,7 @@ import RestaurantDetailPage from '@/views/RestaurantDetailView.vue'
 import ReviewsView from '@/views/ReviewsView.vue'
 import MyReviewsView from '@/views/MyReviewsView.vue'
 import BookingView from '@/views/BookingView.vue'
+import MyBookingsView from '@/views/RestaurantBookingsView.vue'
 import LoginView from '@/views/auth/LoginView.vue'
 import SignUpView from '@/views/auth/SignUpView.vue'
 import NotFoundView from '@/views/NotFoundView.vue'
@@ -23,11 +24,24 @@ const router = createRouter({
     { path: '/restaurants', component: RestaurantsPage },
     { path: '/restaurant/:id', component: RestaurantDetailPage },
     { path: '/reviews', component: ReviewsView },
-    { path: '/my-reviews', component: MyReviewsView },
+    {
+      path: '/my-reviews',
+      component: MyReviewsView,
+      meta: { requiresAuth: true, requiresAdmin: false },
+    },
     { path: '/book', component: BookingView, meta: { requiresAuth: true, requiresAdmin: false } },
+    {
+      path: '/my-bookings',
+      component: MyBookingsView,
+      meta: { requiresAuth: true, requiresAdmin: false },
+    },
     { path: '/login', component: LoginView },
     { path: '/signup', component: SignUpView },
-    { path: '/profile', component: ProfileView },
+    {
+      path: '/profile',
+      component: ProfileView,
+      meta: { requiresAuth: true, requiresAdmin: false },
+    },
 
     {
       path: '/admin',

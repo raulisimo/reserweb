@@ -40,11 +40,11 @@ export const getBookingsByClient = async () => {
   return data
 }
 
-export const getBookingsByRestaurant = async (restaurantId) => {
+export const getBookingsByRestaurant = async () => {
   // eslint-disable-next-line no-undef
   const token = localStorage.getItem('access_token')
 
-  const response = await fetch(`${apiUrl}/bookings/restaurant/${restaurantId}`, {
+  const response = await fetch(`${apiUrl}/bookings/restaurant/`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -57,6 +57,7 @@ export const getBookingsByRestaurant = async (restaurantId) => {
   }
 
   const data = await response.json()
+  console.log('Bookings by restaurant:', data)
   return data
 }
 

@@ -22,3 +22,19 @@ class BookingOut(BaseModel):
 
     class Config:
         from_attributes = True
+
+class BookingWithUserOut(BaseModel):
+    id: int
+    created_at: datetime
+    booking_time: datetime
+    number_of_people: int
+    special_request: Optional[str] = None
+
+    restaurant_id: int
+    restaurant_name: str
+
+    user_id: int
+    user_name: str
+
+    class Config:
+        from_attributes = True
