@@ -44,7 +44,7 @@ export const getBookingsByRestaurant = async () => {
   // eslint-disable-next-line no-undef
   const token = localStorage.getItem('access_token')
 
-  const response = await fetch(`${apiUrl}/bookings/restaurant/`, {
+  const response = await fetch(`${apiUrl}/bookings/restaurant`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
